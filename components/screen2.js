@@ -1,12 +1,15 @@
 import React, { Component } from 'react';
-import {Text} from 'react-native'
-
+import {Text , View } from 'react-native'
+import { Item , Input , Icon} from 'native-base'
 const Pokesearch = (props) => {
   return(
 
-      <Text style={{marginTop : 50}}>
-        Screen2
-      </Text>
+      <View style={{ marginTop : 60  , padding : 10}}>
+        <Item regular>
+          <Icon name="search" />
+          <Input placeholder='Enter Pokemon Name'/>
+        </Item>
+      </View>
 
   );
 }
