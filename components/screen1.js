@@ -6,9 +6,13 @@ import Detail from './screenexp'
 const Pokedex = (props) => {
   const btpressed = (rowData, sectionID, rowID) => {
 
-    props.navigator.push({name: props.store.screen3})
-    props.btdata(rowID)
-
+    this.requestAnimationFrame(() => {
+      props.navigator.push({name: props.store.screen3})
+      props.resetState();
+      setTimeout(() => {
+        props.btdata(rowID)
+      } , 500)
+    });
   }
   const ds = new ListView.DataSource({
   rowHasChanged: (r1, r2) => r1.id !== r2.id
@@ -17,6 +21,7 @@ const Pokedex = (props) => {
 
     <Container style={{ marginTop : 56 }}>
       <ListView
+        pageSize= {1}
         dataSource={ds.cloneWithRows(props.store.pokelist)}
         renderRow={(rowData, sectionID, rowID) => (
           <Button full large style = {{backgroundColor : '#FFFEFF', justifyContent : 'flex-start' , paddingTop : 10}} androidRippleColor ='red'

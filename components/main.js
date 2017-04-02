@@ -32,7 +32,7 @@
     ref={ setNode }
     renderNavigationView={() =>  <SideBar navigator = {nav} store = {props.store} reference = {dlayout}/>
     }>
-      <Nav getnav = {getnav} store = {props.store} opd = {opendrawer} btdata = {props.btdata}/>
+      <Nav getnav = {getnav} store = {props.store} opd = {opendrawer} btdata = {props.btdata} resetState = {props.resetState}/>
     </DrawerLayoutAndroid>
 
   );

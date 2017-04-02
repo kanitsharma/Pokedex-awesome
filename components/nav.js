@@ -21,7 +21,7 @@ const Nav = (props) => {
         props.getnav(navigator)
         if (route.name === props.store.screen1){
           return (
-          <Pokedex store = {props.store} btdata = {props.btdata} navigator = {navigator} />
+          <Pokedex store = {props.store} btdata = {props.btdata} navigator = {navigator} resetState = {props.resetState}/>
         )
         }
         if (route.name === props.store.screen2){

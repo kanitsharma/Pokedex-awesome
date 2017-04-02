@@ -13,6 +13,7 @@ export default class pokedex_awesome extends Component{
     super(props);
     const ds = new ListView.DataSource({rowHasChanged: (r1, r2) => r1 !== r2});
     this.btdata = this.btdata.bind(this)
+    this.resetState = this.resetState.bind(this)
     this.state = {
       dataSource: ds.cloneWithRows(['Pokedex', 'Pokesearch']),
       screen1 : 'Pokedex',
@@ -35,11 +36,14 @@ export default class pokedex_awesome extends Component{
     this.getdata()
   }
 
+  resetState(){
+    this.setState( {resdata : {} , desc : '' , sprite : '' , types : [] , abilities : [] } )
+  }
+
   btdata(rowID){
     types = []
     abilities = []
     this.setState({ animating : true })
-    this.setState( {resdata : {} , desc : '' , sprite : '' , types : [] , abilities : [] } )
     const endpoint = 'https://pokeapi.co/';
     fetch(endpoint+this.state.pokeresourceuri[rowID])
     .then((response) => response.json())
@@ -93,7 +97,7 @@ export default class pokedex_awesome extends Component{
 
   render(){
     return(
-      <Main store = {this.state} btdata = {this.btdata} />
+      <Main store = {this.state} btdata = {this.btdata} resetState = {this.resetState}/>
     );
   }
 
