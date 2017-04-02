@@ -5,13 +5,10 @@ import Detail from './screenexp'
 
 const Pokedex = (props) => {
   const btpressed = (rowData, sectionID, rowID) => {
-
     this.requestAnimationFrame(() => {
       props.navigator.push({name: props.store.screen3})
       props.resetState();
-      setTimeout(() => {
-        props.btdata(rowID)
-      } , 500)
+      props.btdata(rowID)
     });
   }
   const ds = new ListView.DataSource({

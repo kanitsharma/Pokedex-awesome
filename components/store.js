@@ -19,7 +19,6 @@ export default class pokedex_awesome extends Component{
       screen1 : 'Pokedex',
       screen2 : 'Pokesearch',
       screen3 : 'Detail',
-      pokedexdata : {},
       pokelist : [],
       pokeresourceuri : [],
       resdata : {},
@@ -37,13 +36,12 @@ export default class pokedex_awesome extends Component{
   }
 
   resetState(){
-    this.setState( {resdata : {} , desc : '' , sprite : '' , types : [] , abilities : [] } )
+    this.setState( {resdata : {} , desc : '' , sprite : '' , types : [] , abilities : [] , animating : true} )
   }
 
   btdata(rowID){
     types = []
     abilities = []
-    this.setState({ animating : true })
     const endpoint = 'https://pokeapi.co/';
     fetch(endpoint+this.state.pokeresourceuri[rowID])
     .then((response) => response.json())
@@ -51,27 +49,25 @@ export default class pokedex_awesome extends Component{
       this.setState( {resdata : responseJson} )
       responseJson.types.map((obj) => {
         types.push(obj.name)
+        })
         this.setState({types : types})
-      })
       responseJson.abilities.map((obj) => {
         abilities.push(obj.name)
+        })
         this.setState({abilities : abilities})
-      })})
-      .then(() => {
-      fetch(endpoint+this.state.resdata.sprites[0].resource_uri)
-      .then((response) => response.json())
-      .then((responseJson) => {
-        this.setState({ sprite : responseJson.image })
+        fetch(endpoint+this.state.resdata.sprites[0].resource_uri)
+        .then((response) => response.json())
+        .then((responseJson) => {
+          this.setState({ sprite : responseJson.image })
+        }).then(() => {
+          this.setState({ animating : false })
+        })
+        fetch(endpoint+this.state.resdata.descriptions[0].resource_uri)
+        .then((response) => response.json())
+        .then((responseJson) => {
+          this.setState({ desc : responseJson.description })
       })
-      .then(() => {
-        this.setState({ animating : false })
-      })
-      fetch(endpoint+this.state.resdata.descriptions[0].resource_uri)
-      .then((response) => response.json())
-      .then((responseJson) => {
-        this.setState({ desc : responseJson.description })
     })
-  })
 }
 
 
@@ -81,7 +77,6 @@ export default class pokedex_awesome extends Component{
     return fetch('https://pokeapi.co/api/v1/pokedex/1/')
     .then((response) => response.json())
     .then((responseJson) => {
-      this.setState({ pokedexdata : responseJson })
       responseJson.pokemon.map((obj) => {
         pokelist.push(obj.name);
         pokeresource.push(obj.resource_uri)
@@ -97,7 +92,7 @@ export default class pokedex_awesome extends Component{
 
   render(){
     return(
-      <Main store = {this.state} btdata = {this.btdata} resetState = {this.resetState}/>
+      <Main store = {this.state} btdata = {this.btdata} resetState = {this.resetState} />
     );
   }
 

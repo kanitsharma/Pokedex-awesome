@@ -6,14 +6,21 @@ import Pokesearch from './screen2'
 
 const SideBar = (props) => {
   const btpressed = (rowData, sectionID, rowID) => {
-    if(rowID == 0){
-      props.navigator.immediatelyResetRouteStack([{name: props.store.screen1}])
-      props.reference.closeDrawer();
-    }
-    if(rowID == 1) {
-      props.navigator.immediatelyResetRouteStack([{name: props.store.screen2}])
-      props.reference.closeDrawer();
-    }
+
+    this.requestAnimationFrame(() => {
+
+      if(rowID == 0){
+        props.navigator.immediatelyResetRouteStack([{name: props.store.screen1}])
+        props.reference.closeDrawer();
+      }
+      if(rowID == 1) {
+        props.navigator.immediatelyResetRouteStack([{name: props.store.screen2}])
+        props.reference.closeDrawer();
+      }
+      
+    });
+
+
   }
   return(
     <View>

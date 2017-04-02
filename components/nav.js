@@ -26,7 +26,7 @@ const Nav = (props) => {
         }
         if (route.name === props.store.screen2){
           return(
-          <Pokesearch />
+          <Pokesearch navigator = {navigator} store = {props.store}  btdata = {props.btdata} resetState = {props.resetState}/>
         )
         }
         if(route.name === props.store.screen3){
