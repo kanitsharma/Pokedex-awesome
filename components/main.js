@@ -2,7 +2,7 @@
   import {
     DrawerLayoutAndroid,
     Text,
-
+    StatusBar,
   } from 'react-native';
   import {Button} from 'native-base'
   import Nav from './nav'
@@ -32,6 +32,9 @@
     ref={ setNode }
     renderNavigationView={() =>  <SideBar navigator = {nav} store = {props.store} reference = {dlayout}/>
     }>
+      <StatusBar
+        barStyle="light-content"
+      />
       <Nav getnav = {getnav} store = {props.store} opd = {opendrawer} btdata = {props.btdata} resetState = {props.resetState} />
     </DrawerLayoutAndroid>
 
