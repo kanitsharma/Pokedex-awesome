@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import {Image , ListView , View , Text , TouchableNativeFeedback} from 'react-native'
-import {Button} from 'native-base'
+import {Button , Icon} from 'native-base'
 import Pokedex from './screen1'
 import Pokesearch from './screen2'
 
@@ -27,12 +27,16 @@ const SideBar = (props) => {
       <Image style = {{width : 300 , height : 200}} source={require('./img/poke.jpg')} />
       <ListView
         dataSource={props.store.dataSource}
+        style={{marginTop : 20}}
         renderRow={(rowData, sectionID, rowID, highlightRow) => (
-          <Button full large style = {{backgroundColor : '#FFFEFF'}} androidRippleColor ='red'
+          <View style = {{ flexDirection : 'row'}}>
+          <Button  large style = {{backgroundColor : '#FFFEFF',flex : 1 , flexDirection : 'row', justifyContent : 'flex-start'}} androidRippleColor ='red'
             onPress = {() => btpressed(rowData, sectionID, rowID)}
            >
+              <Image style = {{width : 40 , height : 40 , marginRight : 20 }} source={require('./img/pokebag.png')} />
               <Text style = {{color : 'black' , fontSize : 20}} >{rowData}</Text>
           </Button>
+          </View>
         ) }
       />
       <View style={{ justifyContent : 'flex-end' , alignItems : 'center' , margin : 10}}>
