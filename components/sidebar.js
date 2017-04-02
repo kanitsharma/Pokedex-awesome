@@ -17,13 +17,13 @@ const SideBar = (props) => {
         props.navigator.immediatelyResetRouteStack([{name: props.store.screen2}])
         props.reference.closeDrawer();
       }
-      
+
     });
 
 
   }
   return(
-    <View>
+    <View style={{flex : 1}}>
       <Image style = {{width : 300 , height : 200}} source={require('./img/poke.jpg')} />
       <ListView
         dataSource={props.store.dataSource}
@@ -31,10 +31,15 @@ const SideBar = (props) => {
           <Button full large style = {{backgroundColor : '#FFFEFF'}} androidRippleColor ='red'
             onPress = {() => btpressed(rowData, sectionID, rowID)}
            >
-              <Text style = {{color : 'black'}} >{rowData}</Text>
+              <Text style = {{color : 'black' , fontSize : 20}} >{rowData}</Text>
           </Button>
         ) }
       />
+      <View style={{ justifyContent : 'flex-end' , alignItems : 'center' , margin : 10}}>
+        <Text style={{ fontSize : 15 }}>
+          Made By Kt-uchiha
+        </Text>
+      </View>
     </View>
   );
 }

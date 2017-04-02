@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import {StatusBar , ListView , Text , Image} from 'react-native';
-import { Container , Button } from 'native-base';
+import { Container , Button , Spinner } from 'native-base';
 import Detail from './screenexp'
 
 const Pokedex = (props) => {
@@ -17,6 +17,7 @@ const Pokedex = (props) => {
   return(
 
     <Container style={{ marginTop : 56 }}>
+    <Spinner color = 'red' style = {{position: 'absolute',top: 20,left: 170,elevation : 20}} animating = {props.store.animating} />
       <ListView
         pageSize= {1}
         dataSource={ds.cloneWithRows(props.store.pokelist)}

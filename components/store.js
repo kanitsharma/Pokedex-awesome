@@ -83,6 +83,8 @@ export default class pokedex_awesome extends Component{
       })
       this.setState({ pokelist : pokelist })
       this.setState({ pokeresourceuri : pokeresource })
+    }).then(() => {
+      this.setState({ animating : false })
     })
     .catch((error) => {
       console.error(error);
