@@ -1,6 +1,6 @@
 # Pokedex_awesome
 
-A native android app containing information about all the pokemon that you can think of..
+A native android app containing information about all the pokemons that you can think of..
 
 ## Getting Started
 
